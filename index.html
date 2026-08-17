@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IE LaTeX 公式编辑器 | LaTeX Live & Math Converter</title>
+  <meta name="description" content="专业强大的在线 LaTeX 数学公式编辑器与转换工具。支持 KaTeX/MathJax 实时渲染、符号键盘可视化输入、一键生成 MathML 导入 Word、高清无损 PNG 与矢量 SVG 导出。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>∑</text></svg>">
+  
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/mhchem.min.js" crossorigin="anonymous"></script>
+
+  <!-- MathJax for vector SVG & advanced symbols fallback -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['mhchem', 'ams', 'physics']}
+      },
+      svg: {
+        fontCache: 'local'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/symbols.css">
+  <link rel="stylesheet" href="css/dropdown.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="brand-logo">
+        <div class="brand-icon">∑</div>
+        <div class="brand-text">
+          <h1 data-i18n="app_title">IE LaTeX 公式编辑器</h1>
+          <p data-i18n="app_subtitle">实时渲染 · 可视化键盘 · Word MathML 转换 · 高清导出</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Language Switcher Button -->
+        <button id="btn-lang-toggle" class="btn btn-secondary btn-sm" title="Switch Language / 切换语言">
+          <span>🌐</span>
+          <span id="lang-label">EN</span>
+        </button>
+
+        <!-- Shortcuts Help Button -->
+        <button id="btn-shortcuts" class="btn btn-secondary btn-sm" title="快捷键说明">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3zM6 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3z"/></svg>
+          <span data-i18n="shortcuts">快捷键</span>
+        </button>
+
+        <!-- Theme Toggle Button -->
+        <button id="btn-theme-toggle" class="btn-icon" title="切换深色/浅色模式">
+          <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg id="theme-icon-moon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Application Body: Vertical (Top-to-Bottom) Layout -->
+  <main class="main-wrapper">
+    <div class="workspace-vertical">
+      
+      <!-- ================================================================= -->
+      <!-- TOP: 输入区域 (Input Area) -->
+      <!-- ================================================================= -->
+      <section class="input-section">
+        
+        <!-- Visual Math Symbols Palette Toolbar -->
+        <div class="symbols-palette-wrapper">
+          <div id="symbols-tabs" class="symbols-tabs-header">
+            <!-- Tabs dynamically injected -->
+          </div>
+          <div id="symbols-panels" class="symbols-grid-container">
+            <!-- Symbol keys dynamically injected -->
+          </div>
+        </div>
+
+        <!-- LaTeX Code Editor Card -->
+        <div class="card-panel">
+          <div class="card-header">
+            <div class="card-title">
+              <span class="card-title-icon">⚡</span>
+              <span data-i18n="input_section_title">输入区域 · LaTeX 源码编辑</span>
+            </div>
+            <div class="card-toolbar">
+              <button id="btn-format-latex" class="btn btn-secondary btn-sm" title="美化/整理代码" data-i18n="format_code">
+                整理格式
+              </button>
+              <button id="btn-clear-latex" class="btn btn-ghost btn-sm" title="清空内容" data-i18n="clear_code">
+                清空
+              </button>
+            </div>
+          </div>
+
+          <div class="editor-container">
+            <textarea 
+              id="latex-input" 
+              class="latex-textarea" 
+              data-i18n="textarea_placeholder"
+              placeholder="在此输入 LaTeX 公式代码，例如 \int_{-\infty}^{+\infty} e^{-x^2}\,dx = \sqrt{\pi}"
+              spellcheck="false"
+            >\int_{-\infty}^{+\infty} e^{-x^2}\,dx = \sqrt{\pi}</textarea>
+            
+            <!-- Resizer drag handle bar -->
+            <div id="editor-resizer" class="editor-resizer" title="上下拖拽调节输入框高度 / Drag to resize height">
+              <span class="resizer-line"></span>
+            </div>
+
+            <div class="editor-footer">
+              <div class="editor-stats">
+                <span id="char-count">字符数: 0</span>
+                <span id="render-latency">渲染: &lt;1ms</span>
+              </div>
+              <div class="editor-quick-actions">
+                <button id="btn-wrap-display" class="btn btn-ghost btn-sm" title="添加行间公式定界符 $$" data-i18n="wrap_display">$$ 块级</button>
+                <button id="btn-wrap-inline" class="btn btn-ghost btn-sm" title="添加行内公式定界符 $" data-i18n="wrap_inline">$ 行内</button>
+                <button id="btn-copy-latex-raw" class="btn btn-primary btn-sm" title="复制 LaTeX 代码" data-i18n="copy_source">复制源码</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- BOTTOM: 输出区域 (Output Area) -->
+      <!-- ================================================================= -->
+      <section class="output-section">
+        
+        <!-- Live Preview Showcase Card -->
+        <div class="card-panel">
+          <div class="card-header">
+            <div class="card-title">
+              <span class="card-title-icon">👁️</span>
+              <span data-i18n="output_section_title">输出区域 · 实时公式预览</span>
+            </div>
+            <div class="card-toolbar">
+              <button id="btn-reset-preview-zoom" class="btn btn-ghost btn-sm" title="重置缩放" data-i18n="reset_zoom">重置大小</button>
+            </div>
+          </div>
+
+          <div class="preview-box-wrapper">
+            <!-- Control Bar for Preview Settings -->
+            <div class="preview-controls-bar">
+              <div class="preview-control-group">
+                <div class="preview-control-item">
+                  <label for="font-size-slider" data-i18n="font_size">字号:</label>
+                  <input id="font-size-slider" type="range" min="16" max="44" value="26" step="2">
+                  <span id="font-size-val">26px</span>
+                </div>
+
+                <div class="preview-control-item">
+                  <label for="display-mode-select" data-i18n="mode">模式:</label>
+                  <select id="display-mode-select">
+                    <option value="display" selected data-i18n="mode_display">行间独立块 (Display)</option>
+                    <option value="inline" data-i18n="mode_inline">行内嵌入 (Inline)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="preview-control-group">
+                <div class="preview-control-item">
+                  <label for="bg-style-select" data-i18n="bg_color">底色:</label>
+                  <select id="bg-style-select">
+                    <option value="transparent" selected data-i18n="bg_transparent">透明背景</option>
+                    <option value="#ffffff" data-i18n="bg_white">纯白背景</option>
+                    <option value="#0f172a" data-i18n="bg_dark">深色背景</option>
+                    <option value="#fffdf5" data-i18n="bg_warm">护眼暖米</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Formula Stage Viewport -->
+            <div id="formula-stage" class="formula-stage">
+              <div id="formula-output" class="formula-render-output"></div>
+              <!-- Error Banner -->
+              <div id="render-error-banner" class="render-error-banner"></div>
+            </div>
+
+            <!-- Export & Action Dropdown Toolbar (Matching User Specification) -->
+            <div class="preview-footer-toolbar">
+              <div class="export-menu-toolbar">
+                
+                <!-- 1. 输出图片 ^ -->
+                <div class="dropdown-group" id="group-export-image">
+                  <button class="dropdown-trigger-btn" type="button">
+                    <span data-i18n="menu_export_image">输出图片 ⌃</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <button class="dropdown-item" id="item-download-png">
+                      <span class="dropdown-item-icon">🖼️</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_download_png">下载高清 PNG 图片 (1x-8x)</span>
+                        <span class="dropdown-item-desc" data-i18n="action_download_png_desc">支持透明背景 / 自定义倍率</span>
+                      </div>
+                    </button>
+                    <button class="dropdown-item" id="item-download-svg">
+                      <span class="dropdown-item-icon">📐</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_download_svg">下载矢量 SVG 文件</span>
+                        <span class="dropdown-item-desc" data-i18n="action_download_svg_desc">无限缩放 / 论文与排版</span>
+                      </div>
+                    </button>
+                    <button class="dropdown-item" id="item-copy-svg-code">
+                      <span class="dropdown-item-icon">📋</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_copy_svg">复制 SVG 矢量源码</span>
+                        <span class="dropdown-item-desc" data-i18n="action_copy_svg_desc">粘贴到 Figma / Illustrator</span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 2. 输出代码 ^ -->
+                <div class="dropdown-group" id="group-export-code">
+                  <button class="dropdown-trigger-btn" type="button">
+                    <span data-i18n="menu_export_code">输出代码 ⌃</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <button class="dropdown-item" id="item-copy-latex-source">
+                      <span class="dropdown-item-icon">⚡</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_copy_latex">复制纯 LaTeX 源码</span>
+                        <span class="dropdown-item-desc" data-i18n="action_copy_latex_desc">复制原始公式代码</span>
+                      </div>
+                    </button>
+                    <button class="dropdown-item" id="item-copy-md-block">
+                      <span class="dropdown-item-icon">📝</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_copy_md_block">复制 Markdown 块级 ($$...$$)</span>
+                        <span class="dropdown-item-desc" data-i18n="action_copy_md_block_desc">适合 Obsidian / Typora / GitHub</span>
+                      </div>
+                    </button>
+                    <button class="dropdown-item" id="item-copy-md-inline">
+                      <span class="dropdown-item-icon">📄</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_copy_md_inline">复制 Markdown 行内 ($...$)</span>
+                        <span class="dropdown-item-desc" data-i18n="action_copy_md_inline_desc">适合内嵌正文公式</span>
+                      </div>
+                    </button>
+                    <button class="dropdown-item" id="item-copy-html-img">
+                      <span class="dropdown-item-icon">🌐</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_copy_html_img">复制 HTML 嵌入标签</span>
+                        <span class="dropdown-item-desc" data-i18n="action_copy_html_img_desc">网页可直接引用的 SVG 标签</span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 3. 输出Word文件 ^ -->
+                <div class="dropdown-group" id="group-export-word">
+                  <button class="dropdown-trigger-btn" type="button">
+                    <span data-i18n="menu_export_word">输出Word文件 ⌃</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <button class="dropdown-item" id="item-copy-word-mathml">
+                      <span class="dropdown-item-icon">📋</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_copy_mathml">复制 Word MathML (直接粘贴)</span>
+                        <span class="dropdown-item-desc" data-i18n="action_copy_mathml_desc">在 Word/WPS 中直接 Ctrl+V 转化为原生公式</span>
+                      </div>
+                    </button>
+                    <button class="dropdown-item" id="item-download-word-doc">
+                      <span class="dropdown-item-icon">📥</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_download_word">下载 Word (.docx) 公式文档</span>
+                        <span class="dropdown-item-desc" data-i18n="action_download_word_desc">生成内嵌公式的 Word 文档</span>
+                      </div>
+                    </button>
+                    <button class="dropdown-item" id="item-download-mml-file">
+                      <span class="dropdown-item-icon">📑</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_download_mml">下载 MathML (.mml) 文件</span>
+                        <span class="dropdown-item-desc" data-i18n="action_download_mml_desc">标准 XML 数学标记文件</span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 4. 转义 ^ -->
+                <div class="dropdown-group" id="group-export-escape">
+                  <button class="dropdown-trigger-btn" type="button">
+                    <span data-i18n="menu_escape">转义 ⌃</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <button class="dropdown-item" id="item-escape-chinese">
+                      <span class="dropdown-item-icon">🔤</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_escape_chinese">自动将中文包裹为 \text{...}</span>
+                        <span class="dropdown-item-desc" data-i18n="action_escape_chinese_desc">修复中文在公式中的显示</span>
+                      </div>
+                    </button>
+                    <button class="dropdown-item" id="item-format-tidy">
+                      <span class="dropdown-item-icon">✨</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_format_tidy">美化排版与整理空格</span>
+                        <span class="dropdown-item-desc" data-i18n="action_format_tidy_desc">规范 LaTeX 等号与符号间距</span>
+                      </div>
+                    </button>
+                    <button class="dropdown-item" id="item-compress-oneline">
+                      <span class="dropdown-item-icon">🔀</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_compress_oneline">压缩为单行公式</span>
+                        <span class="dropdown-item-desc" data-i18n="action_compress_oneline_desc">移除换行与多余空格</span>
+                      </div>
+                    </button>
+                    <button class="dropdown-item" id="item-escape-special">
+                      <span class="dropdown-item-icon">↩️</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_escape_special">转义特殊字符 (%, &, _)</span>
+                        <span class="dropdown-item-desc" data-i18n="action_escape_special_desc">自动添加反斜杠保护特殊符号</span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 5. 分享 ^ -->
+                <div class="dropdown-group" id="group-export-share">
+                  <button class="dropdown-trigger-btn" type="button">
+                    <span data-i18n="menu_share">分享 ⌃</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <button class="dropdown-item" id="item-share-link">
+                      <span class="dropdown-item-icon">🔗</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_share_link">复制公式分享链接</span>
+                        <span class="dropdown-item-desc" data-i18n="action_share_link_desc">生成可通过 URL 打开的公式地址</span>
+                      </div>
+                    </button>
+                    <button class="dropdown-item" id="item-share-base64">
+                      <span class="dropdown-item-icon">📦</span>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="action_share_base64">复制 Base64 Data URI</span>
+                        <span class="dropdown-item-desc" data-i18n="action_share_base64_desc">嵌入式图像 Data URI 代码</span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Secondary Tabs: Presets, History, MathML and SVG Viewers -->
+        <div class="secondary-section card-panel">
+          <div class="card-header">
+            <div class="tabs-nav" style="border: none; margin: 0; padding: 0;">
+              <button class="tab-btn active" data-tab="tab-presets">
+                <span data-i18n="tab_presets">📚 经典公式库</span>
+              </button>
+              <button class="tab-btn" data-tab="tab-history">
+                <span data-i18n="tab_history">⏱️ 历史记录</span> (<span id="history-count">0</span>)
+              </button>
+              <button class="tab-btn" data-tab="tab-mathml-view">
+                <span data-i18n="tab_mathml">💻 MathML 源码</span>
+              </button>
+              <button class="tab-btn" data-tab="tab-svg-view">
+                <span data-i18n="tab_svg">📐 SVG 源码</span>
+              </button>
+            </div>
+
+            <div id="history-actions" style="display: none;">
+              <button id="btn-clear-history" class="btn btn-ghost btn-sm" title="清空全部历史记录" data-i18n="clear_history">清空历史</button>
+            </div>
+          </div>
+
+          <div style="padding: 1.25rem;">
+            
+            <!-- Tab 1: Classic Presets Library -->
+            <div id="tab-presets" class="tab-content-panel active">
+              <div id="presets-container">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Tab 2: Formula History -->
+            <div id="tab-history" class="tab-content-panel">
+              <div id="history-container" class="history-list-wrapper">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Tab 3: MathML Raw Code Viewer -->
+            <div id="tab-mathml-view" class="tab-content-panel">
+              <div class="code-viewer-container">
+                <div class="code-viewer-header">
+                  <span style="font-size: 0.82rem; color: var(--text-muted);" data-i18n="mathml_tip">MathML 格式适用于网页内嵌与 Office Word 公式编辑器直接解析</span>
+                  <button id="btn-copy-raw-mathml" class="btn btn-secondary btn-sm" data-i18n="action_copy_mathml">复制 MathML</button>
+                </div>
+                <pre id="mathml-code-box" class="code-snippet-box">&lt;math&gt;...&lt;/math&gt;</pre>
+              </div>
+            </div>
+
+            <!-- Tab 4: SVG Raw Code Viewer -->
+            <div id="tab-svg-view" class="tab-content-panel">
+              <div class="code-viewer-container">
+                <div class="code-viewer-header">
+                  <span style="font-size: 0.82rem; color: var(--text-muted);" data-i18n="svg_tip">SVG 矢量代码可直接嵌入 HTML 或粘贴到设计软件 (Figma / Illustrator)</span>
+                  <button id="btn-copy-raw-svg" class="btn btn-secondary btn-sm" data-i18n="action_copy_svg">复制 SVG 代码</button>
+                </div>
+                <pre id="svg-code-box" class="code-snippet-box">&lt;svg&gt;...&lt;/svg&gt;</pre>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- PNG Download Settings Modal -->
+  <div id="modal-png-export" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title" data-i18n="modal_png_title">导出高清 PNG 图片设置</div>
+        <button id="btn-close-png-modal" class="btn-icon">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="png-scale-select" data-i18n="modal_png_scale">分辨率清晰度 (Scale):</label>
+          <select id="png-scale-select" class="form-control">
+            <option value="1">1x 标准清晰度 (Web 网页)</option>
+            <option value="2">2x 视网膜高清 (Retina)</option>
+            <option value="3" selected>3x 超清无损 (PPT/演示推荐)</option>
+            <option value="4">4x 4K 印刷级超清 (论文插图)</option>
+            <option value="8">8x 极致海报级 (8K)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="png-bg-select" data-i18n="modal_png_bg">背景填充:</label>
+          <select id="png-bg-select" class="form-control">
+            <option value="transparent" selected>透明背景 (Transparent)</option>
+            <option value="#ffffff">纯白背景 (#FFFFFF)</option>
+            <option value="#0f172a">深色背景 (#0F172A)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="png-padding-select" data-i18n="modal_png_padding">外边距留白 (Padding):</label>
+          <select id="png-padding-select" class="form-control">
+            <option value="16">紧凑 (16px)</option>
+            <option value="32" selected>适中 (32px)</option>
+            <option value="64">宽松 (64px)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="png-filename-input" data-i18n="modal_png_filename">文件名:</label>
+          <input id="png-filename-input" type="text" class="form-control" value="math_formula.png">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-cancel-png-modal" class="btn btn-secondary" data-i18n="modal_cancel">取消</button>
+        <button id="btn-confirm-download-png" class="btn btn-primary" data-i18n="modal_confirm_download">立即下载 PNG</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shortcuts & Help Modal -->
+  <div id="modal-shortcuts" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title" data-i18n="modal_shortcuts_title">快捷键与使用技巧</div>
+        <button id="btn-close-shortcuts-modal" class="btn-icon">✕</button>
+      </div>
+      <div class="modal-body" style="font-size: 0.85rem; line-height: 1.8;">
+        <p><strong>常用快捷键：</strong></p>
+        <ul style="padding-left: 1.25rem; margin-bottom: 0.75rem;">
+          <li><code>Ctrl + Enter</code> / <code>Cmd + Enter</code>: 快速复制 LaTeX 源码</li>
+          <li><code>Tab</code>: 在公式输入框内插入空格缩进</li>
+          <li><code>Esc</code>: 关闭弹窗或下拉菜单</li>
+        </ul>
+        <p><strong>Word 公式粘贴指南：</strong></p>
+        <p style="color: var(--text-secondary);">
+          在“<strong>输出Word文件</strong>”菜单中点击“<strong>复制 Word MathML</strong>”，随后在 Microsoft Word 或 WPS 中直接按 <code>Ctrl + V</code> 粘贴，即可自动识别并转化为原生可编辑的数学公式！
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-confirm-shortcuts-modal" class="btn btn-primary" data-i18n="modal_shortcuts_know">我知道了</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>IE LaTeX 公式编辑器 &copy; 2026 · 基于 KaTeX 与 MathJax 核心构建 · 极致流畅与高精度排版</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/i18n.js"></script>
+  <script src="js/symbols-data.js"></script>
+  <script src="js/presets.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/exporter.js"></script>
+  <script src="js/history.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

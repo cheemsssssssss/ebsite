@@ -1,0 +1,161 @@
+/* ==========================================================================
+   LaTeX Math Formula Studio - Symbols Palette & Visual Toolbar
+   ========================================================================== */
+
+.symbols-palette-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Category Tabs Scroll Header */
+.symbols-tabs-header {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.4rem 0.6rem;
+  background-color: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.symbols-tabs-header::-webkit-scrollbar {
+  height: 4px;
+}
+
+.symbols-tabs-header::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 4px;
+}
+
+.symbol-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition-normal);
+}
+
+.symbol-tab-btn:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.symbol-tab-btn.active {
+  background-color: var(--bg-secondary);
+  color: var(--brand-primary);
+  border-color: var(--border-color);
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+}
+
+.symbol-tab-icon {
+  font-size: 0.95rem;
+}
+
+/* Symbols Grid Content Container */
+.symbols-grid-container {
+  padding: 0.75rem;
+  max-height: 180px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.symbols-grid-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.symbols-grid-container::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 4px;
+}
+
+.symbols-category-panel {
+  display: none;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 0.45rem;
+}
+
+.symbols-category-panel.active {
+  display: grid;
+}
+
+/* Individual Math Key Button */
+.math-key-btn {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  padding: 0.25rem 0.4rem;
+  transition: var(--transition-normal);
+  position: relative;
+  user-select: none;
+  color: var(--text-primary);
+}
+
+.math-key-btn:hover {
+  border-color: var(--brand-primary);
+  background-color: var(--brand-light);
+  color: var(--brand-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.math-key-btn:active {
+  transform: translateY(0);
+}
+
+.math-key-rendered {
+  font-size: 0.95rem;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.math-key-btn .katex {
+  font-size: 0.9rem !important;
+}
+
+/* Tooltip on hover */
+.math-key-btn::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #0f172a;
+  color: #f8fafc;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 200;
+  box-shadow: var(--shadow-md);
+}
+
+.math-key-btn:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
