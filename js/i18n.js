@@ -13,6 +13,37 @@ window.I18N_DICT = {
     shortcuts: '快捷键',
     lang_btn: 'EN',
     lang_tip: 'Switch to English',
+    nav_editor: '公式编辑器',
+    nav_guide: '排版教程与手册',
+    nav_about: '关于我们',
+
+    // Footer
+    footer_tools: '核心工具',
+    footer_docs: '教程与支持',
+    footer_legal: '法律与合规',
+    footer_editor: 'LaTeX 公式编辑器',
+    footer_word: 'Word MathML 导出',
+    footer_png: '4K 高清 PNG / SVG',
+    footer_guide: 'LaTeX 排版手册',
+    footer_faq: '常见报错解决',
+    footer_privacy: '隐私政策 (Privacy)',
+    footer_terms: '服务条款 (Terms)',
+    footer_about: '关于我们 (About)',
+    footer_copyright: 'IE LaTeX 公式编辑器 © 2026 · 基于 KaTeX 与 MathJax 核心构建 · 专注极致数学公式排版体验',
+
+    // FAQ Section
+    faq_section_title: 'LaTeX 公式使用指南与常见问题 (FAQ)',
+    faq_q1: '如何将 LaTeX 公式直接粘贴到 Word / WPS？',
+    faq_a1: '在编辑器中完成公式输入后，点击底部的【输出Word文件】下拉菜单并选择【复制 Word MathML】。打开 Microsoft Word 或 WPS 文档，直接按 Ctrl + V 粘贴，Word 即可无缝自动识别并将其转化为原生可编辑的数学公式对象。',
+    faq_q2: '如何导出 4K/8K 超清透明背景图片？',
+    faq_a2: '在【输出图片】下拉菜单中选择【下载高清 PNG 图片】，将分辨率倍率切换为 3x、4x 4K 或 8x 8K，背景选择【透明背景】，即可一键下载印刷级超清无损公式图片，非常适合学术论文配图与 PPT 演讲演示。',
+    faq_q3: '双核极速渲染与 100% 隐私安全保障',
+    faq_a3: '本站基于 KaTeX 与 MathJax 纯前端 WebAssembly/JS 技术构建，所有公式渲染、MathML 转换与图片栅格化均在您本地浏览器沙箱中毫秒级完成，零数据上传云端，彻底保障学术与试题数据隐私安全。',
+
+    // Cookie Banner
+    cookie_text: '本站使用 Cookie 和本地存储技术以保障工具流畅运行并保存您的公式与排版偏好。浏览本站即表示您同意我们的',
+    cookie_policy_link: '隐私政策',
+    cookie_accept: '同意并接受',
 
     // Input Section
     input_section_title: '输入区域 · LaTeX 源码编辑',
@@ -146,6 +177,37 @@ window.I18N_DICT = {
     shortcuts: 'Shortcuts',
     lang_btn: '中文',
     lang_tip: '切换为中文',
+    nav_editor: 'Editor',
+    nav_guide: 'Guide & Manual',
+    nav_about: 'About Us',
+
+    // Footer
+    footer_tools: 'Core Tools',
+    footer_docs: 'Tutorials & Docs',
+    footer_legal: 'Legal & Compliance',
+    footer_editor: 'LaTeX Formula Editor',
+    footer_word: 'Word MathML Export',
+    footer_png: '4K PNG / SVG Export',
+    footer_guide: 'LaTeX Typesetting Guide',
+    footer_faq: 'Troubleshooting & FAQ',
+    footer_privacy: 'Privacy Policy',
+    footer_terms: 'Terms of Service',
+    footer_about: 'About Us',
+    footer_copyright: 'IE LaTeX Formula Editor © 2026 · Powered by KaTeX & MathJax · Designed for flawless mathematical typesetting',
+
+    // FAQ Section
+    faq_section_title: 'LaTeX Formula Guide & Frequently Asked Questions (FAQ)',
+    faq_q1: 'How to paste LaTeX formulas directly into Word / WPS?',
+    faq_a1: 'After editing your formula, click the "Export Word" menu and select "Copy Word MathML". In Microsoft Word or WPS, press Ctrl+V to paste. Word will automatically parse and convert it into a native, fully editable equation object.',
+    faq_q2: 'How to export 4K/8K ultra-HD transparent formula images?',
+    faq_a2: 'In the "Export Image" dropdown, choose "Download HD PNG Image", set the scale factor to 3x, 4x (4K) or 8x (8K), and select "Transparent". You will get print-ready, crystal-clear formula images suitable for research papers, posters, and presentation slides.',
+    faq_q3: 'Dual-Core Instant Rendering & 100% Privacy Guarantee',
+    faq_a3: 'Built upon KaTeX and MathJax client-side technology, all formula rendering, MathML conversions, and image rasterizations occur entirely within your local browser sandbox. Zero formula data is uploaded to cloud servers, fully safeguarding your academic privacy.',
+
+    // Cookie Banner
+    cookie_text: 'We use cookies and local storage to optimize tool performance and remember your formula and typesetting preferences. By using our site, you agree to our',
+    cookie_policy_link: 'Privacy Policy',
+    cookie_accept: 'Accept All',
 
     // Input Section
     input_section_title: 'Input Area · LaTeX Source Editor',
@@ -312,11 +374,15 @@ window.applyI18n = function () {
   // Update language toggle button label
   const langLabel = document.getElementById('lang-label');
   if (langLabel) {
-    langLabel.textContent = lang === 'zh' ? 'EN' : '中文';
+    if (lang === 'zh') {
+      langLabel.innerHTML = '<span style="font-weight:700; color:var(--brand-primary);">中</span> / <span style="opacity:0.6;">EN</span>';
+    } else {
+      langLabel.innerHTML = '<span style="opacity:0.6;">中</span> / <span style="font-weight:700; color:var(--brand-primary);">EN</span>';
+    }
   }
   const btnLangToggle = document.getElementById('btn-lang-toggle');
   if (btnLangToggle) {
-    btnLangToggle.title = window.t('lang_tip');
+    btnLangToggle.title = lang === 'zh' ? '点击切换为英文 (Switch to English)' : 'Click to switch to Chinese (切换为中文)';
   }
 };
 
@@ -332,4 +398,32 @@ window.toggleLanguage = function () {
   if (window.refreshSymbolsAndPresetsI18n) {
     window.refreshSymbolsAndPresetsI18n();
   }
+
+  // Show Toast
+  if (window.showToast) {
+    window.showToast(window.I18N_LANG === 'zh' ? '已切换为中文' : 'Switched to English', 'success');
+  }
 };
+
+// Global DOM Content Loaded Handler for i18n on all pages
+(function() {
+  function autoInitI18n() {
+    window.applyI18n();
+    const btn = document.getElementById('btn-lang-toggle');
+    if (btn && !btn.dataset.i18nBound) {
+      btn.dataset.i18nBound = 'true';
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.toggleLanguage();
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', autoInitI18n);
+  } else {
+    autoInitI18n();
+  }
+})();
+

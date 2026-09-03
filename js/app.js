@@ -335,13 +335,17 @@
     if (!window.LATEX_PRESETS || !presetsContainer) return;
     presetsContainer.innerHTML = '';
 
+    const isEn = window.I18N_LANG === 'en';
+
     window.LATEX_PRESETS.forEach(cat => {
       const group = document.createElement('div');
       group.className = 'presets-category-group';
 
+      const catName = isEn ? (cat.category_en || cat.category_zh || cat.category) : (cat.category_zh || cat.category);
+
       const title = document.createElement('div');
       title.className = 'presets-category-title';
-      title.innerHTML = `<span>⚡</span> <span>${cat.category}</span>`;
+      title.innerHTML = `<span>⚡</span> <span>${catName}</span>`;
       group.appendChild(title);
 
       const grid = document.createElement('div');
@@ -350,6 +354,9 @@
       cat.items.forEach(item => {
         const card = document.createElement('div');
         card.className = 'preset-card';
+
+        const itemName = isEn ? (item.name_en || item.name_zh || item.name) : (item.name_zh || item.name);
+        const itemDesc = isEn ? (item.desc_en || item.desc_zh || item.description) : (item.desc_zh || item.description);
 
         let mathPreview = item.latex;
         if (window.katex) {
@@ -365,16 +372,16 @@
 
         card.innerHTML = `
           <div class="preset-card-header">
-            <span class="preset-name">${item.name}</span>
+            <span class="preset-name">${itemName}</span>
           </div>
           <div class="preset-preview-math">${mathPreview}</div>
-          <div class="preset-desc">${item.description}</div>
+          <div class="preset-desc">${itemDesc}</div>
         `;
 
         card.addEventListener('click', () => {
           latexInput.value = item.latex;
           triggerRenderNow();
-          showToast(`${window.t('tab_presets')}: ${item.name}`, 'success');
+          showToast(`${window.t('tab_presets')}: ${itemName}`, 'success');
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
@@ -465,6 +472,7 @@
       setTimeout(() => toast.remove(), 250);
     }, 2800);
   }
+  window.showToast = showToast;
 
   /**
    * Dropdown Menu Interactions
@@ -783,12 +791,6 @@
 
     // Theme Toggle
     btnThemeToggle.addEventListener('click', toggleTheme);
-
-    // Language Toggle
-    btnLangToggle.addEventListener('click', () => {
-      window.toggleLanguage();
-      showToast(window.I18N_LANG === 'zh' ? '已切换为中文' : 'Switched to English', 'success');
-    });
 
     // Global Keybindings
     document.addEventListener('keydown', (e) => {

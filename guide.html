@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LaTeX 数学公式排版权威指南与语法速查手册 | IE LaTeX 公式编辑器</title>
+  <meta name="description" content="全方位 LaTeX 数学公式排版权威教程。涵盖微积分、线性代数矩阵、希腊字母速查、物理符号、Word MathML 原生公式直接转换及常见 LaTeX 报错排查技巧。">
+  <meta name="keywords" content="LaTeX公式排版, LaTeX教程, LaTeX微积分, LaTeX矩阵, LaTeX转Word, MathML转换, LaTeX报错解决, 数学公式排版规范">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://cheemsssssssss.github.io/ebsite/guide.html">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3071435062091159"
+     crossorigin="anonymous"></script>
+
+  <!-- KaTeX for live formula demonstration in the guide -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/content.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">∑</div>
+        <div class="brand-text">
+          <h1 data-i18n="app_title">IE LaTeX 公式编辑器</h1>
+          <p data-i18n="app_subtitle">实时渲染 · Word MathML 转换 · 高清导出</p>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link" data-i18n="nav_editor">公式编辑器</a>
+        <a href="guide.html" class="nav-link active" data-i18n="nav_guide">排版教程与手册</a>
+        <a href="about.html" class="nav-link" data-i18n="nav_about">关于我们</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Language Switcher Button -->
+        <button id="btn-lang-toggle" class="btn btn-secondary btn-sm" title="Switch Language / 切换语言">
+          <span>🌐</span>
+          <span id="lang-label">EN</span>
+        </button>
+        <a href="index.html" class="btn btn-primary btn-sm" data-i18n="nav_editor">进入在线编辑器</a>
+        <button id="btn-theme-toggle" class="btn-icon" title="切换深色/浅色模式">
+          <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg id="theme-icon-moon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="content-page-wrapper">
+    <article class="content-article">
+
+      <!-- ================= CHINESE VERSION ================= -->
+      <div class="lang-zh">
+        <div class="content-header">
+          <h1>LaTeX 数学公式排版权威指南与速查手册</h1>
+          <div class="content-meta">
+            <span>分类：学术排版与工具教程</span>
+            <span>适用人群：本科/研究生、教师、科研学者、工程技术人员</span>
+            <span>核心内容：LaTeX 语法、Word 完美转排、报错避坑与排版美化</span>
+          </div>
+        </div>
+
+        <div class="content-body">
+          <div class="callout-box">
+            <p><strong>导读：</strong> LaTeX 是国际学术界与出版领域公认的数学排版黄金标准。无论是毕业设计论文、IEEE/ACM 期刊投稿，还是制作数学竞赛讲义，熟练运用 LaTeX 都能让您的公式呈现出出版级的严谨与美感。本文由 <strong>IE LaTeX 团队</strong> 编写，助您从零掌握现代 LaTeX 公式排版核心技能，并实现与 Word / WPS 的无缝协作。</p>
+          </div>
+
+          <h2>一、LaTeX 数学公式基础结构与定界符</h2>
+          <p>在 LaTeX 中，数学公式主要分为两类呈现模式：</p>
+          <ul>
+            <li><strong>行内公式 (Inline Math)：</strong> 嵌入在文本段落中，高度紧凑，通常使用单美元符号 <code>$...$</code> 或 <code>\(...\)</code> 包裹；</li>
+            <li><strong>行间独立块级公式 (Display Math)：</strong> 单独占据一行并居中显示，字体与符号尺寸舒展，通常使用双美元符号 <code>$$...$$</code> 或 <code>\[...\]</code> 包裹。</li>
+          </ul>
+
+          <div class="callout-box callout-warning">
+            <p><strong>💡 贴士：</strong> 在使用我们的 <a href="index.html">IE LaTeX 在线编辑器</a> 时，您<strong>无需</strong>在输入框首尾手工键入 <code>$$</code> 或 <code>$</code>，编辑器内置了智能脱壳与模式切换功能，直接输入公式核心代码即可获得最快渲染！</p>
+          </div>
+
+          <h2>二、高频基础语法与代码对照</h2>
+          <table class="tutorial-table">
+            <thead>
+              <tr>
+                <th>数学含义</th>
+                <th>LaTeX 代码</th>
+                <th>排版要点说明</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>上标与指数</td>
+                <td><code>x^{2}</code> 或 <code>e^{i\pi}</code></td>
+                <td>若指数超过一个字符，必须用大括号 <code>{...}</code> 包裹，如 <code>x^{10}</code></td>
+              </tr>
+              <tr>
+                <td>下标与索引</td>
+                <td><code>a_{i,j}</code> 或 <code>x_{k+1}</code></td>
+                <td>下标同理，多字符必须加大括号</td>
+              </tr>
+              <tr>
+                <td>标准分式</td>
+                <td><code>\frac{分子}{分母}</code></td>
+                <td>例如 <code>\frac{a + b}{c - d}</code>，行内亦可用 <code>\tfrac</code> 保持行高</td>
+              </tr>
+              <tr>
+                <td>开平方根与 n 次方根</td>
+                <td><code>\sqrt{x}</code> 或 <code>\sqrt[n]{x}</code></td>
+                <td>方括号用于指定根指数，如立方根 <code>\sqrt[3]{8}</code></td>
+              </tr>
+              <tr>
+                <td>自适应大小圆括号</td>
+                <td><code>\left( \frac{a}{b} \right)</code></td>
+                <td>使用 <code>\left(</code> 与 <code>\right)</code> 使括号高度随分式自动伸展</td>
+              </tr>
+              <tr>
+                <td>自适应大括号集合</td>
+                <td><code>\left\{ x \mid x > 0 \right\}</code></td>
+                <td>大括号为 LaTeX 特殊控制字符，显示需加反斜杠转义 <code>\{</code> 与 <code>\}</code></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>三、高等数学与微积分排版实战</h2>
+          <h3>1. 极限与求和</h3>
+          <p>在极限与求和中，下标会自动显示在符号正下方（Display 模式下）：</p>
+          <pre><code>% 极限定义
+\lim_{x \to 0} \frac{\sin x}{x} = 1
+
+% 级数求和公式
+\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}</code></pre>
+
+          <h3>2. 定积分、多重积分与微分算子</h3>
+          <p>积分符号使用 <code>\int</code>，重积分使用 <code>\iint</code> 或 <code>\iiint</code>，回路积分使用 <code>\oint</code>。建议在微分算子 <code>dx</code> 前加上薄空格 <code>\,</code>，符合标准出版规范：</p>
+          <pre><code>% 高斯积分 (经典微积分公式)
+\int_{-\infty}^{+\infty} e^{-x^2}\,dx = \sqrt{\pi}
+
+% 封闭曲面积分 (高斯散度定理)
+\oint_{\partial V} \mathbf{F} \cdot d\mathbf{S} = \iiint_V (\nabla \cdot \mathbf{F})\,dV</code></pre>
+
+          <h2>四、线性代数与矩阵方程排版</h2>
+          <p>LaTeX 排版矩阵推荐使用标准环境：</p>
+          <ul>
+            <li><code>pmatrix</code>：圆括号矩阵 <code>(...)</code></li>
+            <li><code>bmatrix</code>：方括号矩阵 <code>[...]</code></li>
+            <li><code>vmatrix</code>：行列式 <code>|...|</code></li>
+            <li><code>cases</code>：分段函数或方程组大括号</li>
+          </ul>
+          <pre><code>% 旋转矩阵示例 (bmatrix)
+\begin{bmatrix}
+  \cos\theta & -\sin\theta \\
+  \sin\theta &  \cos\theta
+\end{bmatrix}
+
+% 经典分段函数 (cases)
+f(x) = \begin{cases}
+  x^2, & \text{当 } x \ge 0 \\
+  -x,  & \text{当 } x < 0
+\end{cases}</code></pre>
+
+          <div class="callout-box callout-success" id="word-mathml">
+            <h2>五、Word / WPS 原生公式无缝转换全攻略</h2>
+            <p>借助 IE LaTeX 公式编辑器，您可以实现“<strong>LaTeX 编写，Word 原生渲染</strong>”的高效工作流：</p>
+            <ol>
+              <li>在 IE LaTeX 公式编辑器中输入或整理好您的公式；</li>
+              <li>点击底部控制栏的 <strong>【输出Word文件 ⌃】</strong> 按钮；</li>
+              <li>点击 <strong>【复制 Word MathML】</strong>；</li>
+              <li>切回到 Word 或 WPS 文档界面，在需要插入公式的位置直接按 <code>Ctrl + V</code>（Mac 用户按 <code>Cmd + V</code>）；</li>
+              <li>Word 会自动调用内置的 Office MathML 解析器，瞬间将其转化为<strong>原生可自由点击编辑的公式对象</strong>！</li>
+            </ol>
+          </div>
+
+          <h2 id="image-export">六、高清 4K PNG 与矢量 SVG 导出技巧</h2>
+          <ul>
+            <li><strong>PPT 演讲推荐：</strong> 在【输出图片 ⌃】中选择【下载高清 PNG 图片】，将倍率选择为 <code>3x</code> 或 <code>4x</code>，并勾选【透明背景】，插入 PPT 后无论如何放大都不会失真，且不遮挡背景；</li>
+            <li><strong>论文排版推荐：</strong> 选择【下载矢量 SVG 文件】，SVG 为纯矢量路径，支持无损无限放大，可直接导入 Adobe Illustrator 或 Visio 重新编辑。</li>
+          </ul>
+
+          <h2 id="faq">七、常见 LaTeX 语法错误与故障排查指南 (FAQ & Troubleshooting)</h2>
+          <p>在编写数学公式时，遇到 KaTeX / MathJax 报错通常由定界符冲突、花括号未闭合或特殊字符引起。以下整理了学术研究中最常见的八大报错原因与一键解决办法：</p>
+
+          <div class="faq-grid">
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">报错 1</span> <code>KaTeX parse error: Can't use function '$' in math mode</code></h3>
+              <p><strong>【常见诱因】</strong> 从 ChatGPT、Claude、Markdown 文档或论文源码中复制公式时，外层常带有 <code>$$...$$</code> 或 <code>$...$</code>，直接粘贴进本编辑器导致重复嵌套。</p>
+              <p><strong>【原因分析】</strong> 本编辑器已默认处于数学排版环境，再次遇到 <code>$</code> 符号会被 KaTeX 当作非法字符解析。</p>
+              <p><strong>【错误示范】</strong> <code>$$\int_0^1 x^2\,dx$$</code> 或 <code>$E=mc^2$</code></p>
+              <p><strong>【正确写法】</strong> <code>\int_0^1 x^2\,dx</code> 或 <code>E=mc^2</code>（删除首尾外层的一对或两对美元符号即可）。</p>
+              <p><strong>【智能特性】</strong> 本编辑器内置自适应脱壳算法，通常会自动清除首尾 <code>$$</code>；若在其他平台请手动移除。</p>
+            </div>
+
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">报错 2</span> <code>KaTeX parse error: Expected '}', got 'EOF'</code> (花括号未闭合)</h3>
+              <p><strong>【常见诱因】</strong> 在书写分式 <code>\frac{}{}</code>、开根号 <code>\sqrt{}</code> 或复杂指数时，漏掉了末尾的闭合大括号 <code>}</code>。</p>
+              <p><strong>【原因分析】</strong> LaTeX 语法强制要求所有作为参数的分组大括号必须成对闭合。解析器读到公式尾端（EOF, End of File）仍未找到配对的 <code>}</code> 就会报错。</p>
+              <p><strong>【错误示范】</strong> <code>\frac{a + b}{c + \sqrt{d}</code> （最后缺少一个 <code>}</code>）</p>
+              <p><strong>【正确写法】</strong> <code>\frac{a + b}{c + \sqrt{d}}</code></p>
+              <p><strong>【排查技巧】</strong> 关注编辑器光标处的高亮括号配对提示，由内向外检查 <code>{</code> 与 <code>}</code> 的数量是否完全相等。</p>
+            </div>
+
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">报错 3</span> <code>Double superscript</code> 或 <code>Double subscript</code> (多重上下标冲突)</h3>
+              <p><strong>【常见诱因】</strong> 连续使用两个上标符号 <code>^</code> 或两个下标符号 <code>_</code>，例如键入 <code>x^2^3</code> 或 <code>a_i_j</code>。</p>
+              <p><strong>【原因分析】</strong> LaTeX 无法推断结合优先级（是 $(x^2)^3$ 还是 $x^{(2^3)}$？），因此禁止连续多重上下标。</p>
+              <p><strong>【错误示范】</strong> <code>x^2^3</code> 或 <code>a_1_2</code></p>
+              <p><strong>【正确写法】</strong> 必须明确使用大括号分组：<code>x^{2^3}</code> 或 <code>(x^2)^3</code>；双下标应写为 <code>a_{i,j}</code> 或 <code>{a_i}_j</code>。</p>
+            </div>
+
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">报错 4</span> <code>KaTeX parse error: Undefined control sequence: \xxx</code> (未定义命令)</h3>
+              <p><strong>【常见诱因】</strong> 公式中出现未识别的反斜杠指令，渲染器提示命令不存在。</p>
+              <p><strong>【原因分析】</strong> 90% 属于命令单词拼写错误；另外 10% 属于生僻宏包（如特定物理或电路包）在轻量 Web 渲染器中未内建。</p>
+              <p><strong>【常见拼写纠错速查】</strong>
+                <ul>
+                  <li>无穷大：正确为 <code>\infty</code>（勿拼为 <code>\infinty</code>）</li>
+                  <li>偏微分算子：正确为 <code>\partial</code>（勿拼为 <code>\part</code>）</li>
+                  <li>小于等于：正确为 <code>\le</code> 或 <code>\leq</code>（勿拼为 <code>\le=</code>）</li>
+                  <li>大于等于：正确为 <code>\ge</code> 或 <code>\geq</code>（勿拼为 <code>\ge=</code>）</li>
+                  <li>希腊字母 α：正确为 <code>\alpha</code>（勿拼为 <code>\alfa</code>）</li>
+                </ul>
+              </p>
+            </div>
+
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">报错 5</span> <code>KaTeX parse error: \left and \right mismatch</code> (定界符不配对)</h3>
+              <p><strong>【常见诱因】</strong> 使用自适应伸缩括号 <code>\left( ... \right)</code> 或分段函数 <code>\left\{ ...</code> 时，漏写了配对的 <code>\right</code>。</p>
+              <p><strong>【原因分析】</strong> 每一个 <code>\left</code> 必须对应一个 <code>\right</code>。如果公式只需要单侧括号（如分段函数只有左大括号，或微积分代入线只有右侧竖线），另一侧必须使用虚拟占位点 <code>\right.</code> 或 <code>\left.</code>！</p>
+              <p><strong>【错误示范】</strong> 代入线只写 <code>\frac{df}{dx} \right|_{x=0}</code>（前面缺少 <code>\left.</code>）</p>
+              <p><strong>【正确写法】</strong> <code>\left. \frac{df}{dx} \right|_{x=0}</code>，或直接使用单侧尺寸宏：<code>\frac{df}{dx} \Big|_{x=0}</code>。</p>
+            </div>
+
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">报错 6</span> 中文汉字显示为方块、红字或排版错乱</h3>
+              <p><strong>【常见诱因】</strong> 在公式中直接键入汉字或全角符号，例如 <code>E = mc^2 (质能方程)</code>。</p>
+              <p><strong>【原因分析】</strong> LaTeX 数学模式默认将所有连续英文字符当作数学变量斜体解析，未声明环境的非 ASCII 汉字会导致解析异常。</p>
+              <p><strong>【错误示范】</strong> <code>f(x) = x^2 \quad 当 x > 0</code></p>
+              <p><strong>【正确写法】</strong> 将汉字放入 <code>\text{...}</code> 文本环境中：<code>f(x) = x^2 \quad \text{当 } x > 0</code>。</p>
+              <p><strong>【一键技巧】</strong> 直接点击本编辑器底部的【转义 ⌃】➔【自动包裹中文为 \text{}】，系统将全自动识别并规范包裹所有中文！</p>
+            </div>
+
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">报错 7</span> 百分号 <code>%</code>、下划线 <code>_</code>、与号 <code>&</code> 导致公式被吞</h3>
+              <p><strong>【常见诱因】</strong> 公式中包含 <code>85%</code>、<code>file_name</code> 或 <code>A & B</code>，结果 <code>%</code> 后面的内容全部消失。</p>
+              <p><strong>【原因分析】</strong> 在 LaTeX 中，<code>%</code> 是行内注释符（其后所有字符被当作注释忽略），<code>_</code> 是下标引导符，<code>&</code> 是表格对齐符。</p>
+              <p><strong>【正确写法】</strong> 必须添加反斜杠转义：百分号写为 <code>85\%</code>，文本下划线写为 <code>\text{file\_name}</code>，与号写为 <code>\text{A \& B}</code>。</p>
+            </div>
+
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">报错 8</span> 复制到 Word / WPS 中显示为纯代码，无法变成原生公式</h3>
+              <p><strong>【常见诱因】</strong> 用户误点了“复制源码”，然后直接去 Word 中按 <code>Ctrl+V</code>，粘贴出一串普通文本代码。</p>
+              <p><strong>【正确操作流程】</strong>
+                <ol>
+                  <li>在本编辑器底部操作栏，点击 <strong>【输出Word文件 ⌃】</strong> 下拉菜单；</li>
+                  <li>点击 <strong>【复制 Word MathML】</strong>；</li>
+                  <li>切换到 Word / WPS 文档，在目标位置直接按下 <code>Ctrl + V</code>（Mac 用户按 <code>Cmd + V</code>）；</li>
+                  <li>Word 会自动调用内置的 Office Math 解析器，瞬间将其转化为<strong>原生可编辑的数学公式对象</strong>！</li>
+                </ol>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= ENGLISH VERSION ================= -->
+      <div class="lang-en">
+        <div class="content-header">
+          <h1>LaTeX Mathematical Typesetting Guide & Syntax Cheatsheet</h1>
+          <div class="content-meta">
+            <span>Category: Academic Publishing & Tool Guide</span>
+            <span>Target Audience: Students, Researchers, Educators, Engineers</span>
+            <span>Key Topics: Syntax, Word MathML Integration, Troubleshooting</span>
+          </div>
+        </div>
+
+        <div class="content-body">
+          <div class="callout-box">
+            <p><strong>Introduction:</strong> LaTeX is the internationally recognized gold standard for scientific, mathematical, and technical publication. From university dissertations to peer-reviewed IEEE and ACM journal papers, LaTeX provides unmatched typography. This comprehensive guide by the <strong>IE LaTeX Team</strong> will help you master modern mathematical typesetting and seamlessly integrate equations into Microsoft Word and WPS.</p>
+          </div>
+
+          <h2>1. LaTeX Formula Structure & Math Mode Delimiters</h2>
+          <p>LaTeX equations are rendered in two fundamental display modes:</p>
+          <ul>
+            <li><strong>Inline Math:</strong> Embedded directly within a sentence paragraph. Typically wrapped with single dollar signs <code>$...$</code> or <code>\(...\)</code>;</li>
+            <li><strong>Display Math:</strong> Positioned on an isolated line, centered with generous padding and expanded symbols. Wrapped with double dollar signs <code>$$...$$</code> or <code>\[...\]</code>.</li>
+          </ul>
+
+          <div class="callout-box callout-warning">
+            <p><strong>💡 Pro Tip:</strong> In our <a href="index.html">IE LaTeX Online Editor</a>, you <strong>do not need</strong> to manually type <code>$$</code> or <code>$</code> at the beginning and end. Our built-in Smart Unwrapping engine automatically detects delimiters and switches modes dynamically.</p>
+          </div>
+
+          <h2>2. High-Frequency Syntax & LaTeX Code Cheatsheet</h2>
+          <table class="tutorial-table">
+            <thead>
+              <tr>
+                <th>Mathematical Concept</th>
+                <th>LaTeX Markup</th>
+                <th>Typographic Rule</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Superscript & Exponents</td>
+                <td><code>x^{2}</code> or <code>e^{i\pi}</code></td>
+                <td>Group multi-character exponents inside braces <code>{...}</code>, e.g. <code>x^{10}</code></td>
+              </tr>
+              <tr>
+                <td>Subscript & Indices</td>
+                <td><code>a_{i,j}</code> or <code>x_{k+1}</code></td>
+                <td>Multi-character subscripts must be grouped in curly braces</td>
+              </tr>
+              <tr>
+                <td>Standard Fractions</td>
+                <td><code>\frac{numerator}{denominator}</code></td>
+                <td>e.g. <code>\frac{a + b}{c - d}</code>; use <code>\tfrac</code> for inline compact height</td>
+              </tr>
+              <tr>
+                <td>Square & N-th Roots</td>
+                <td><code>\sqrt{x}</code> or <code>\sqrt[n]{x}</code></td>
+                <td>Use brackets for root degrees, e.g. cubic root <code>\sqrt[3]{8}</code></td>
+              </tr>
+              <tr>
+                <td>Auto-sizing Parentheses</td>
+                <td><code>\left( \frac{a}{b} \right)</code></td>
+                <td><code>\left(</code> and <code>\right)</code> scale delimiters automatically to equation height</td>
+              </tr>
+              <tr>
+                <td>Set-Builder Braces</td>
+                <td><code>\left\{ x \mid x > 0 \right\}</code></td>
+                <td>Braces are reserved LaTeX syntax; escape them with backslashes <code>\{</code> and <code>\}</code></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>3. Advanced Calculus & Analysis Workflows</h2>
+          <h3>1. Limits & Infinite Summations</h3>
+          <p>Limits and sums automatically place bounds underneath operators in display mode:</p>
+          <pre><code>% Limit definition
+\lim_{x \to 0} \frac{\sin x}{x} = 1
+
+% Infinite series summation
+\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}</code></pre>
+
+          <h3>2. Integrals & Differential Operators</h3>
+          <p>Use <code>\int</code> for single integrals, <code>\iint</code> for double integrals, and <code>\oint</code> for contour integrals. Add a thin space <code>\,</code> before differential operators like <code>dx</code>:</p>
+          <pre><code>% Gaussian Integral (Euler-Poisson Integral)
+\int_{-\infty}^{+\infty} e^{-x^2}\,dx = \sqrt{\pi}
+
+% Divergence Theorem (Gauss-Ostrogradsky)
+\oint_{\partial V} \mathbf{F} \cdot d\mathbf{S} = \iiint_V (\nabla \cdot \mathbf{F})\,dV</code></pre>
+
+          <h2>4. Linear Algebra, Matrices & Piecewise Systems</h2>
+          <p>Standard matrix environments provided by AMS-LaTeX:</p>
+          <ul>
+            <li><code>pmatrix</code>: Parenthesized matrix <code>(...)</code></li>
+            <li><code>bmatrix</code>: Bracketed matrix <code>[...]</code></li>
+            <li><code>vmatrix</code>: Determinant bars <code>|...|</code></li>
+            <li><code>cases</code>: Piecewise functions or simultaneous equation braces</li>
+          </ul>
+          <pre><code>% Rotation Matrix (bmatrix)
+\begin{bmatrix}
+  \cos\theta & -\sin\theta \\
+  \sin\theta &  \cos\theta
+\end{bmatrix}
+
+% Piecewise Function (cases)
+f(x) = \begin{cases}
+  x^2, & \text{if } x \ge 0 \\
+  -x,  & \text{if } x < 0
+\end{cases}</code></pre>
+
+          <div class="callout-box callout-success" id="word-mathml">
+            <h2>5. Seamless Microsoft Word & WPS MathML Workflow</h2>
+            <p>Using IE LaTeX Formula Editor, you can easily bridge LaTeX code to Microsoft Word without expensive commercial plugins:</p>
+            <ol>
+              <li>Format and preview your formula in our online editor;</li>
+              <li>Click the <strong>【Export Word ⌃】</strong> menu at the bottom toolbar;</li>
+              <li>Click <strong>【Copy Word MathML】</strong>;</li>
+              <li>Switch to Microsoft Word or WPS, and press <code>Ctrl + V</code> (or <code>Cmd + V</code> on macOS);</li>
+              <li>Word will instantly convert the standard MathML payload into a <strong>native, interactive, clickable equation object</strong>!</li>
+            </ol>
+          </div>
+
+          <h2 id="image-export">6. High-DPI 4K PNG & Vector SVG Export Strategies</h2>
+          <ul>
+            <li><strong>For Presentation Slides (PowerPoint / Keynote):</strong> In 【Export Image ⌃】, select 【Download HD PNG Image】, set scale to <code>3x</code> or <code>4x</code>, and check 【Transparent Background】. Equations will remain pin-sharp at any projector resolution without obscuring slide backgrounds;</li>
+            <li><strong>For Vector Graphics & Print (Illustrator / Visio):</strong> Download the SVG file for pure mathematical Bézier curves and scalable typography.</li>
+          </ul>
+
+          <h2 id="faq">7. Common LaTeX Parse Errors & Troubleshooting (FAQ)</h2>
+          <p>When authoring mathematical equations, KaTeX and MathJax errors typically stem from delimiter conflicts, unclosed brackets, or reserved characters. Here are the top eight most common syntax errors and their solutions:</p>
+
+          <div class="faq-grid">
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">Error 1</span> <code>KaTeX parse error: Can't use function '$' in math mode</code></h3>
+              <p><strong>Cause:</strong> Outer math delimiters like <code>$$...$$</code> or <code>$...$</code> were copied from ChatGPT, Claude, or Markdown and pasted into an already active math rendering context.</p>
+              <p><strong>Incorrect:</strong> <code>$$\int_0^1 x^2\,dx$$</code> or <code>$E=mc^2$</code></p>
+              <p><strong>Correct:</strong> <code>\int_0^1 x^2\,dx</code> or <code>E=mc^2</code> (Simply remove the outer dollar signs).</p>
+              <p><strong>Smart Feature:</strong> Our online editor includes automatic delimiter unwrapping to strip redundant outer dollar signs on the fly.</p>
+            </div>
+
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">Error 2</span> <code>KaTeX parse error: Expected '}', got 'EOF'</code> (Unclosed Curly Brace)</h3>
+              <p><strong>Cause:</strong> A closing curly brace <code>}</code> was omitted inside nested commands such as <code>\frac{}{}</code> or <code>\sqrt{}</code>.</p>
+              <p><strong>Incorrect:</strong> <code>\frac{a + b}{c + \sqrt{d}</code> (Missing final closing brace <code>}</code>)</p>
+              <p><strong>Correct:</strong> <code>\frac{a + b}{c + \sqrt{d}}</code></p>
+              <p><strong>Fix:</strong> Inspect bracket pairs from inside out to ensure that every opening <code>{</code> has a matching <code>}</code>.</p>
+            </div>
+
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">Error 3</span> <code>Double superscript</code> or <code>Double subscript</code></h3>
+              <p><strong>Cause:</strong> Consecutive superscript <code>^</code> or subscript <code>_</code> operators were used without explicit grouping.</p>
+              <p><strong>Incorrect:</strong> <code>x^2^3</code> or <code>a_i_j</code></p>
+              <p><strong>Correct:</strong> Explicitly clarify associative order with braces: <code>x^{2^3}</code> or <code>(x^2)^3</code>; for subscripts use <code>a_{i,j}</code> or <code>{a_i}_j</code>.</p>
+            </div>
+
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">Error 4</span> <code>KaTeX parse error: Undefined control sequence: \xxx</code></h3>
+              <p><strong>Cause:</strong> A typo occurred in the LaTeX macro name, or the command belongs to an esoteric non-standard package.</p>
+              <p><strong>Quick Fix Cheatsheet:</strong>
+                <ul>
+                  <li>Infinity: use <code>\infty</code> (not <code>\infinty</code>)</li>
+                  <li>Partial derivative: use <code>\partial</code> (not <code>\part</code>)</li>
+                  <li>Less than or equal: use <code>\le</code> or <code>\leq</code> (not <code>\le=</code>)</li>
+                  <li>Greek letter α: use <code>\alpha</code> (not <code>\alfa</code>)</li>
+                  <li>Empty set: use <code>\emptyset</code> or <code>\varnothing</code></li>
+                </ul>
+              </p>
+            </div>
+
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">Error 5</span> <code>KaTeX parse error: \left and \right mismatch</code></h3>
+              <p><strong>Cause:</strong> Every scalable delimiter <code>\left</code> must be matched by a corresponding <code>\right</code>. If you only need a delimiter on one side (e.g., evaluation bar or piecewise brace), you must balance the other side with a virtual dot delimiter <code>\right.</code> or <code>\left.</code>.</p>
+              <p><strong>Incorrect:</strong> Evaluation bar written as <code>\frac{df}{dx} \right|_{x=0}</code> (Missing opening <code>\left.</code>)</p>
+              <p><strong>Correct:</strong> <code>\left. \frac{df}{dx} \right|_{x=0}</code>, or use the single-sided vertical bar macro: <code>\frac{df}{dx} \Big|_{x=0}</code>.</p>
+            </div>
+
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">Error 6</span> Plain / Non-ASCII Text Appearing as Corrupted or Spaced Letters</h3>
+              <p><strong>Cause:</strong> LaTeX treats all consecutive ASCII letters as products of single mathematical variables in italics. Non-ASCII or regular words must be wrapped in a text environment.</p>
+              <p><strong>Incorrect:</strong> <code>f(x) = x^2 \quad for x > 0</code></p>
+              <p><strong>Correct:</strong> <code>f(x) = x^2 \quad \text{for } x > 0</code></p>
+              <p><strong>Tip:</strong> In our editor, click 【Escaping ⌃】➔ 【Auto-wrap Chinese into \text{}】 to format automatically.</p>
+            </div>
+
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">Error 7</span> Percent <code>%</code>, Underscore <code>_</code>, or Ampersand <code>&</code> Truncating Code</h3>
+              <p><strong>Cause:</strong> In LaTeX syntax, <code>%</code> denotes an inline comment that discards everything following it on that line. <code>_</code> is a subscript operator, and <code>&</code> is an alignment separator.</p>
+              <p><strong>Correct:</strong> Escape reserved symbols with a leading backslash: write <code>85\%</code>, <code>\text{file\_name}</code>, and <code>\text{A \& B}</code>.</p>
+            </div>
+
+            <div class="faq-item">
+              <h3><span class="faq-badge-err">Error 8</span> Pasted into Word / WPS as Raw Code Instead of Native Equation</h3>
+              <p><strong>Cause:</strong> Copying raw LaTeX text directly into Word produces plain text strings.</p>
+              <p><strong>Standard Workflow:</strong>
+                <ol>
+                  <li>In our editor, open the <strong>【Export Word ⌃】</strong> menu and click <strong>【Copy Word MathML】</strong>;</li>
+                  <li>Switch to Microsoft Word or WPS and press <code>Ctrl + V</code> (or <code>Cmd + V</code> on Mac);</li>
+                  <li>Word's internal Office Math parser automatically converts the XML payload into an <strong>interactive, native equation object</strong>!</li>
+                </ol>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- Multi-column Compliant Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-links-grid">
+        <div class="footer-col">
+          <h4 data-i18n="footer_tools">核心工具</h4>
+          <ul>
+            <li><a href="index.html" data-i18n="footer_editor">LaTeX 公式编辑器</a></li>
+            <li><a href="guide.html#word-mathml" data-i18n="footer_word">Word MathML 导出</a></li>
+            <li><a href="guide.html#image-export" data-i18n="footer_png">4K 高清 PNG / SVG</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_docs">教程与支持</h4>
+          <ul>
+            <li><a href="guide.html" data-i18n="footer_guide">LaTeX 排版手册</a></li>
+            <li><a href="guide.html#faq" data-i18n="footer_faq">常见报错解决</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_legal">法律与合规</h4>
+          <ul>
+            <li><a href="privacy.html" data-i18n="footer_privacy">隐私政策 (Privacy)</a></li>
+            <li><a href="terms.html" data-i18n="footer_terms">服务条款 (Terms)</a></li>
+            <li><a href="about.html" data-i18n="footer_about">关于我们 (About)</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer_copyright">IE LaTeX 公式编辑器 &copy; 2026 · 基于 KaTeX 与 MathJax 核心构建 · 专注极致数学公式排版体验</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js?v=2"></script>
+  <script src="js/cookie-banner.js"></script>
+  <script>
+    const btnTheme = document.getElementById('btn-theme-toggle');
+    const sun = document.getElementById('theme-icon-sun');
+    const moon = document.getElementById('theme-icon-moon');
+    const isDark = localStorage.getItem('latex_theme') === 'dark';
+    if (isDark) {
+      document.body.classList.add('dark-theme');
+      if (sun) sun.style.display = 'none';
+      if (moon) moon.style.display = 'block';
+    }
+    if (btnTheme) {
+      btnTheme.addEventListener('click', () => {
+        const dark = document.body.classList.toggle('dark-theme');
+        localStorage.setItem('latex_theme', dark ? 'dark' : 'light');
+        if (sun) sun.style.display = dark ? 'none' : 'block';
+        if (moon) moon.style.display = dark ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
