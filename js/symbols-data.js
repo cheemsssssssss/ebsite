@@ -7,7 +7,7 @@ window.LATEX_SYMBOLS_DATA = [
   {
     id: 'common',
     name: '常用/基础',
-    icon: '⚡',
+    icon: '∑',
     symbols: [
       { label: '\\frac{a}{b}', latex: '\\frac{a}{b}', template: '\\frac{a}{b}', tip: '分式 (Fraction)' },
       { label: 'x^{a}', latex: 'x^{a}', template: 'x^{a}', tip: '上标/幂 (Superscript)' },
@@ -262,7 +262,7 @@ window.LATEX_SYMBOLS_DATA = [
   {
     id: 'physics',
     name: '物理与量子',
-    icon: '⚛',
+    icon: 'ψ',
     symbols: [
       { label: '\\hbar', latex: '\\hbar', template: '\\hbar', tip: '约化普朗克常数 h-bar' },
       { label: '\\langle \\psi |', latex: '\\langle \\psi |', template: '\\langle \\psi |', tip: 'Bra 左矢' },

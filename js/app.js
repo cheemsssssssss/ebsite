@@ -179,6 +179,20 @@
     }, 2000);
   }
 
+  /**
+   * Rough perceptual lightness of a #rrggbb colour, used to keep the rendered
+   * formula legible when the user picks a custom stage background.
+   */
+  function isLightColor(hex) {
+    const m = /^#?([0-9a-f]{6})$/i.exec(String(hex).trim());
+    if (!m) return true;
+    const n = parseInt(m[1], 16);
+    const r = (n >> 16) & 255;
+    const g = (n >> 8) & 255;
+    const b = n & 255;
+    return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255 > 0.6;
+  }
+
   function triggerRenderNow() {
     const startTime = performance.now();
     const latex = latexInput.value;
@@ -193,6 +207,10 @@
 
     const bgChoice = bgStyleSelect.value;
     formulaStage.style.backgroundColor = bgChoice === 'transparent' ? '' : bgChoice;
+    // Keep the glyphs legible against whichever stage colour was chosen.
+    formulaStage.style.color = bgChoice === 'transparent'
+      ? ''
+      : (isLightColor(bgChoice) ? '#1c1a17' : '#f0ece4');
 
     // Perform rendering
     renderer.render(latex);
@@ -345,7 +363,7 @@
 
       const title = document.createElement('div');
       title.className = 'presets-category-title';
-      title.innerHTML = `<span>⚡</span> <span>${catName}</span>`;
+      title.textContent = catName;
       group.appendChild(title);
 
       const grid = document.createElement('div');

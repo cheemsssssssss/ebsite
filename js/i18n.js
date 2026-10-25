@@ -122,10 +122,10 @@ window.I18N_DICT = {
     action_share_base64_desc: '嵌入式图像 Data URI 代码',
 
     // Bottom Tabs
-    tab_presets: '📚 经典公式库',
-    tab_history: '⏱️ 历史记录',
-    tab_mathml: '💻 MathML 源码',
-    tab_svg: '📐 SVG 源码',
+    tab_presets: '经典公式库',
+    tab_history: '历史记录',
+    tab_mathml: 'MathML 源码',
+    tab_svg: 'SVG 源码',
     clear_history: '清空历史',
     history_empty: '暂无历史记录，编辑公式后将自动保存于此处',
     mathml_tip: 'MathML 格式适用于网页内嵌与 Office Word 公式编辑器直接解析',
@@ -286,10 +286,10 @@ window.I18N_DICT = {
     action_share_base64_desc: 'Embedded image data URI string',
 
     // Bottom Tabs
-    tab_presets: '📚 Classic Presets',
-    tab_history: '⏱️ History',
-    tab_mathml: '💻 MathML Code',
-    tab_svg: '📐 SVG Code',
+    tab_presets: 'Classic Presets',
+    tab_history: 'History',
+    tab_mathml: 'MathML Code',
+    tab_svg: 'SVG Code',
     clear_history: 'Clear History',
     history_empty: 'No history yet. Edited formulas will be automatically saved here',
     mathml_tip: 'MathML format is suitable for web embedding and MS Word formula parsing',

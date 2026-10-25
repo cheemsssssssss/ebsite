@@ -15,8 +15,8 @@
   <meta name="keywords" content="LaTeX公式编辑器, 在线LaTeX, LaTeX转Word, MathML转换, LaTeX转PNG, LaTeX转SVG, LaTeX编辑器, 数学公式排版, 考研数学公式, LaTeX Live, 在线公式生成器, KaTeX渲染, MathJax">
   <meta name="author" content="IE LaTeX Studio">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#090d16" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#131211" media="(prefers-color-scheme: dark)">
   <link rel="canonical" href="https://cheemsssssssss.github.io/ebsite/">
 
   <!-- Open Graph / Facebook / WeChat / QQ -->
@@ -145,7 +145,7 @@
       <div class="header-actions">
         <!-- Language Switcher Button -->
         <button id="btn-lang-toggle" class="btn btn-secondary btn-sm" title="Switch Language / 切换语言">
-          <span>🌐</span>
+          <span class="icon-inline"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z"/></svg></span>
           <span id="lang-label">EN</span>
         </button>
 
@@ -187,7 +187,7 @@
         <div class="card-panel">
           <div class="card-header">
             <div class="card-title">
-              <span class="card-title-icon">⚡</span>
+              <span class="card-title-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5z"/></svg></span>
               <span data-i18n="input_section_title">输入区域 · LaTeX 源码编辑</span>
             </div>
             <div class="card-toolbar">
@@ -239,7 +239,7 @@
         <div class="card-panel">
           <div class="card-header">
             <div class="card-title">
-              <span class="card-title-icon">👁️</span>
+              <span class="card-title-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
               <span data-i18n="output_section_title">输出区域 · 实时公式预览</span>
             </div>
             <div class="card-toolbar">
@@ -297,21 +297,21 @@
                   </button>
                   <div class="dropdown-menu">
                     <button class="dropdown-item" id="item-download-png">
-                      <span class="dropdown-item-icon">🖼️</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1.5"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4 4 3-2.5 4 3.5"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_download_png">下载高清 PNG 图片 (1x-8x)</span>
                         <span class="dropdown-item-desc" data-i18n="action_download_png_desc">支持透明背景 / 自定义倍率</span>
                       </div>
                     </button>
                     <button class="dropdown-item" id="item-download-svg">
-                      <span class="dropdown-item-icon">📐</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 3 20h18L12 4z"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_download_svg">下载矢量 SVG 文件</span>
                         <span class="dropdown-item-desc" data-i18n="action_download_svg_desc">无限缩放 / 论文与排版</span>
                       </div>
                     </button>
                     <button class="dropdown-item" id="item-copy-svg-code">
-                      <span class="dropdown-item-icon">📋</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_copy_svg">复制 SVG 矢量源码</span>
                         <span class="dropdown-item-desc" data-i18n="action_copy_svg_desc">粘贴到 Figma / Illustrator</span>
@@ -327,28 +327,28 @@
                   </button>
                   <div class="dropdown-menu">
                     <button class="dropdown-item" id="item-copy-latex-source">
-                      <span class="dropdown-item-icon">⚡</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5z"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_copy_latex">复制纯 LaTeX 源码</span>
                         <span class="dropdown-item-desc" data-i18n="action_copy_latex_desc">复制原始公式代码</span>
                       </div>
                     </button>
                     <button class="dropdown-item" id="item-copy-md-block">
-                      <span class="dropdown-item-icon">📝</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7l-4-4z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_copy_md_block">复制 Markdown 块级 ($$...$$)</span>
                         <span class="dropdown-item-desc" data-i18n="action_copy_md_block_desc">适合 Obsidian / Typora / GitHub</span>
                       </div>
                     </button>
                     <button class="dropdown-item" id="item-copy-md-inline">
-                      <span class="dropdown-item-icon">📄</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7l-4-4z"/><path d="M14 3v4h4"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_copy_md_inline">复制 Markdown 行内 ($...$)</span>
                         <span class="dropdown-item-desc" data-i18n="action_copy_md_inline_desc">适合内嵌正文公式</span>
                       </div>
                     </button>
                     <button class="dropdown-item" id="item-copy-html-img">
-                      <span class="dropdown-item-icon">🌐</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_copy_html_img">复制 HTML 嵌入标签</span>
                         <span class="dropdown-item-desc" data-i18n="action_copy_html_img_desc">网页可直接引用的 SVG 标签</span>
@@ -364,21 +364,21 @@
                   </button>
                   <div class="dropdown-menu">
                     <button class="dropdown-item" id="item-copy-word-mathml">
-                      <span class="dropdown-item-icon">📋</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_copy_mathml">复制 Word MathML (直接粘贴)</span>
                         <span class="dropdown-item-desc" data-i18n="action_copy_mathml_desc">在 Word/WPS 中直接 Ctrl+V 转化为原生公式</span>
                       </div>
                     </button>
                     <button class="dropdown-item" id="item-download-word-doc">
-                      <span class="dropdown-item-icon">📥</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_download_word">下载 Word (.docx) 公式文档</span>
                         <span class="dropdown-item-desc" data-i18n="action_download_word_desc">生成内嵌公式的 Word 文档</span>
                       </div>
                     </button>
                     <button class="dropdown-item" id="item-download-mml-file">
-                      <span class="dropdown-item-icon">📑</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_download_mml">下载 MathML (.mml) 文件</span>
                         <span class="dropdown-item-desc" data-i18n="action_download_mml_desc">标准 XML 数学标记文件</span>
@@ -394,28 +394,28 @@
                   </button>
                   <div class="dropdown-menu">
                     <button class="dropdown-item" id="item-escape-chinese">
-                      <span class="dropdown-item-icon">🔤</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6V4h16v2"/><path d="M12 4v16"/><path d="M8 20h8"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_escape_chinese">自动将中文包裹为 \text{...}</span>
                         <span class="dropdown-item-desc" data-i18n="action_escape_chinese_desc">修复中文在公式中的显示</span>
                       </div>
                     </button>
                     <button class="dropdown-item" id="item-format-tidy">
-                      <span class="dropdown-item-icon">✨</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><path d="m6 6 2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_format_tidy">美化排版与整理空格</span>
                         <span class="dropdown-item-desc" data-i18n="action_format_tidy_desc">规范 LaTeX 等号与符号间距</span>
                       </div>
                     </button>
                     <button class="dropdown-item" id="item-compress-oneline">
-                      <span class="dropdown-item-icon">🔀</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3h4v4"/><path d="M3 20 21 3"/><path d="M17 21h4v-4"/><path d="m3 4 6 6"/><path d="m15 15 6 6"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_compress_oneline">压缩为单行公式</span>
                         <span class="dropdown-item-desc" data-i18n="action_compress_oneline_desc">移除换行与多余空格</span>
                       </div>
                     </button>
                     <button class="dropdown-item" id="item-escape-special">
-                      <span class="dropdown-item-icon">↩️</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h9a7 7 0 0 1 0 14H8"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_escape_special">转义特殊字符 (%, &, _)</span>
                         <span class="dropdown-item-desc" data-i18n="action_escape_special_desc">自动添加反斜杠保护特殊符号</span>
@@ -431,14 +431,14 @@
                   </button>
                   <div class="dropdown-menu">
                     <button class="dropdown-item" id="item-share-link">
-                      <span class="dropdown-item-icon">🔗</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_share_link">复制公式分享链接</span>
                         <span class="dropdown-item-desc" data-i18n="action_share_link_desc">生成可通过 URL 打开的公式地址</span>
                       </div>
                     </button>
                     <button class="dropdown-item" id="item-share-base64">
-                      <span class="dropdown-item-icon">📦</span>
+                      <span class="dropdown-item-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="m4 7.5 8 4.5 8-4.5"/><path d="M12 12v9"/></svg></span>
                       <div class="dropdown-item-text">
                         <span class="dropdown-item-title" data-i18n="action_share_base64">复制 Base64 Data URI</span>
                         <span class="dropdown-item-desc" data-i18n="action_share_base64_desc">嵌入式图像 Data URI 代码</span>
@@ -454,20 +454,22 @@
         </div>
 
         <!-- Secondary Tabs: Presets, History, MathML and SVG Viewers -->
-        <div class="secondary-section card-panel">
+      </section>
+
+<div class="secondary-section card-panel">
           <div class="card-header">
-            <div class="tabs-nav" style="border: none; margin: 0; padding: 0;">
+            <div class="tabs-nav">
               <button class="tab-btn active" data-tab="tab-presets">
-                <span data-i18n="tab_presets">📚 经典公式库</span>
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2V5z"/><path d="M8 3v18"/></svg><span data-i18n="tab_presets">经典公式库</span>
               </button>
               <button class="tab-btn" data-tab="tab-history">
-                <span data-i18n="tab_history">⏱️ 历史记录</span> (<span id="history-count">0</span>)
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.5l3.5 2"/></svg><span data-i18n="tab_history">历史记录</span> (<span id="history-count">0</span>)
               </button>
               <button class="tab-btn" data-tab="tab-mathml-view">
-                <span data-i18n="tab_mathml">💻 MathML 源码</span>
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1.5"/><path d="m7 10 3 2.5-3 2.5"/><path d="M13 15h4"/></svg><span data-i18n="tab_mathml">MathML 源码</span>
               </button>
               <button class="tab-btn" data-tab="tab-svg-view">
-                <span data-i18n="tab_svg">📐 SVG 源码</span>
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 3 20h18L12 4z"/></svg><span data-i18n="tab_svg">SVG 源码</span>
               </button>
             </div>
 
@@ -476,7 +478,7 @@
             </div>
           </div>
 
-          <div style="padding: 1.25rem;">
+          <div class="tab-panels">
             
             <!-- Tab 1: Classic Presets Library -->
             <div id="tab-presets" class="tab-content-panel active">
@@ -517,27 +519,25 @@
           </div>
         </div>
 
-      </section>
-
       <!-- ================================================================= -->
       <!-- SEO Semantic Feature Guide & FAQ Section -->
       <!-- ================================================================= -->
       <section class="seo-section">
         <h2 class="seo-section-title">
-          <span>📖</span>
+          <span class="icon-inline"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10 4.5 7 4 4 4v14c3 0 6 .5 8 2.5 2-2 5-2.5 8-2.5V4c-3 0-6 .5-8 2.5z"/><path d="M12 6.5V20"/></svg></span>
           <span data-i18n="faq_section_title">LaTeX 公式使用指南与常见问题 (FAQ)</span>
         </h2>
         <div class="seo-grid">
           <div class="seo-card">
-            <h3><span>📄</span> <span data-i18n="faq_q1">如何将 LaTeX 公式直接粘贴到 Word / WPS？</span></h3>
+            <h3><span class="icon-inline"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7l-4-4z"/><path d="M14 3v4h4"/></svg></span> <span data-i18n="faq_q1">如何将 LaTeX 公式直接粘贴到 Word / WPS？</span></h3>
             <p data-i18n="faq_a1">在编辑器中完成公式输入后，点击底部的【输出Word文件】下拉菜单并选择【复制 Word MathML】。打开 Microsoft Word 或 WPS 文档，直接按 Ctrl + V 粘贴，Word 即可无缝自动识别并将其转化为原生可编辑的数学公式对象。</p>
           </div>
           <div class="seo-card">
-            <h3><span>🖼️</span> <span data-i18n="faq_q2">如何导出 4K/8K 超清透明背景图片？</span></h3>
+            <h3><span class="icon-inline"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1.5"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 5-5 4 4 3-2.5 4 3.5"/></svg></span> <span data-i18n="faq_q2">如何导出 4K/8K 超清透明背景图片？</span></h3>
             <p data-i18n="faq_a2">在【输出图片】下拉菜单中选择【下载高清 PNG 图片】，将分辨率倍率切换为 3x、4x 4K 或 8x 8K，背景选择【透明背景】，即可一键下载印刷级超清无损公式图片，非常适合学术论文配图与 PPT 演讲演示。</p>
           </div>
           <div class="seo-card">
-            <h3><span>⚡</span> <span data-i18n="faq_q3">双核极速渲染与 100% 隐私安全保障</span></h3>
+            <h3><span class="icon-inline"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5z"/></svg></span> <span data-i18n="faq_q3">双核极速渲染与 100% 隐私安全保障</span></h3>
             <p data-i18n="faq_a3">本站基于 KaTeX 与 MathJax 纯前端 WebAssembly/JS 技术构建，所有公式渲染、MathML 转换与图片栅格化均在您本地浏览器沙箱中毫秒级完成，零数据上传云端，彻底保障学术与试题数据隐私安全。</p>
           </div>
         </div>
@@ -551,7 +551,7 @@
     <div class="modal-card">
       <div class="modal-header">
         <div class="modal-title" data-i18n="modal_png_title">导出高清 PNG 图片设置</div>
-        <button id="btn-close-png-modal" class="btn-icon">✕</button>
+        <button id="btn-close-png-modal" class="btn-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
       </div>
       <div class="modal-body">
         <div class="form-group">
@@ -600,7 +600,7 @@
     <div class="modal-card">
       <div class="modal-header">
         <div class="modal-title" data-i18n="modal_shortcuts_title">快捷键与使用技巧</div>
-        <button id="btn-close-shortcuts-modal" class="btn-icon">✕</button>
+        <button id="btn-close-shortcuts-modal" class="btn-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
       </div>
       <div class="modal-body" style="font-size: 0.85rem; line-height: 1.8;">
         <p><strong>常用快捷键：</strong></p>
